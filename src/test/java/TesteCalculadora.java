@@ -46,8 +46,8 @@ public class TesteCalculadora { // inicio da classe
    @Test
     public void testeDividirDoisNumerosInteiros(){ // inicío do teste dividir inteiro
         // Configura
-        int numA = 8;
-        int numB = 0;
+        int numA = 42;
+        int numB = 6;
         String resultadoEsperado = "Não é possível dividir por zero";
 
         // Executa
@@ -55,5 +55,7 @@ public class TesteCalculadora { // inicio da classe
 
         // Valida
         assertEquals(resultadoEsperado, resultadoAtual);
+        System.out.println(numA + " / " + numB + " = " + resultadoAtual);
+        System.out.println("O resultado esperado: " + resultadoEsperado);
     } // fim do teste dividir inteiro
 }
