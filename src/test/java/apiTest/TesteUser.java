@@ -17,8 +17,8 @@ import static org.hamcrest.Matchers.is;
 // Classe
 public class TesteUser {    // inicio da classe
     // Atributos
-    String ct = "application/json"; // content type
-    String uriUser = "https://petstore.swagger.io/v2/user/";
+    static String ct = "application/json"; // content type
+    static String uriUser = "https://petstore.swagger.io/v2/user/";
 
     // Funções e Métodos
     // Funções de Apoio
@@ -73,10 +73,27 @@ public class TesteUser {    // inicio da classe
                 .body("password", is(senha))
                 .body("phone", is(telefone))
         ;
-    }
+    } // fim do Get User
+    @Test
+    public void testarAlterarUser() throws IOException { // inicio do Put User
+        String jsonBody = lerArquivoJson("src/test/resources/json/user2.json");
 
+        String userId = "1371739181";
+        String username = "charlie";
 
-
-
+        given()
+                .contentType(ct)
+                .log().all()
+                .body(jsonBody)
+        .when()
+                .put(uriUser + username)
+        .then()
+                .log().all()
+                .statusCode(200)
+                .body("code", is(200))
+                .body("type", is("unknown"))
+                .body("message", is(userId))
+        ;
+    } // fim do Put User
 
 } // fim da classe
