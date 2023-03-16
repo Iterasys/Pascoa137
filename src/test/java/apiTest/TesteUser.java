@@ -4,6 +4,7 @@ package apiTest;
 // Bibliotecas
 
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import static org.hamcrest.Matchers.is;
 
 
 // Classe
+
 public class TesteUser {    // inicio da classe
     // Atributos
     static String ct = "application/json"; // content type
@@ -95,5 +97,22 @@ public class TesteUser {    // inicio da classe
                 .body("message", is(userId))
         ;
     } // fim do Put User
+
+    @Test
+    public void testarExcluirUser(){ // inicio do Delete User
+        String username = "charlie";
+
+        given()
+                .contentType(ct)
+                .log().all()
+        .when()
+                .delete(uriUser + username)
+        .then()
+                .statusCode(200)
+                .body("code", is(200))
+                .body("type", is("unknown"))
+                .body("message", is(username))
+        ;
+    } // fim do Delete User
 
 } // fim da classe
