@@ -1,0 +1,11 @@
+id,username,firstName,lastName,email,password,phone,userStatus
+1371739181,charlie,charlie,brown,charlie@teste.com,123456,11999998888,0
+1371739182,john,john,smith,john@teste.com,abcdef,11999997777,1
+1371739183,mary,mary,lee,mary@teste.com,ghijkl,11999996666,0
+1371739184,jack,jack,jones,jack@teste.com,mnopqr,11999995555,1
+1371739185,sara,sara,thompson,sara@teste.com,stuuvw,11999994444,0
+1371739186,adam,adam,wong,adam@teste.com,xyzabc,11999993333,1
+1371739187,lucy,lucy,chen,lucy@teste.com,defghi,11999992222,0
+1371739188,eric,eric,liu,eric@teste.com,jklmno,11999991111,1
+1371739189,jane,jane,davis,jane@teste.com,pqrstuv,11999990000,0
+1371739190,peter,peter,lee,peter@teste.com,wxyzab,11999998888,1
