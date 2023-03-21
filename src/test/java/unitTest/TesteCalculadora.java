@@ -81,11 +81,11 @@ public class TesteCalculadora { // inicio da classe
 
     } // final do teste do dividir
 
-   @Test
+    @Test
     public void testeDividirDoisNumerosInteiros(){ // inicío do teste dividir inteiro
         // Configura
         int numA = 42;
-        int numB = 6;
+        int numB = 0;
         String resultadoEsperado = "Não é possível dividir por zero";
 
         // Executa
