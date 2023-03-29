@@ -1,0 +1,10 @@
+{
+  "baseUrl" : "https://bookstore.toolsqa.com",
+    "endpoints" : {
+        "books" : "/BookStore/v1/Books",
+        "book" : "/BookStore/v1/Book",
+        "user" : "/Account/v1/User",
+        "token" : "/Account/v1/GenerateToken",
+        "auth" : "/Account/v1/Authorized"
+    }
+}
