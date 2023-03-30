@@ -32,7 +32,7 @@ Nos demais, normalmente, 1 versão de driver funciona para várias do navegador
 
 Há 3 formas de configurar/utilizar um driver:
 - Download manual e instala dentro do projeto - Bom: Portátil - Ruim: Manutenção
-falta reiniciar - Download manual e instala em uma pasta compartilhada - Bom: Manutenção - Ruim: Portátil
+- Download manual e instala em uma pasta compartilhada - Bom: Manutenção - Ruim: Portátil
 - Gerenciador de download automático - Bom: Manutenção + Portátil - Ruim: Usa recursos
 
 
