@@ -1,0 +1,40 @@
+Testes Web = Aplicações Web = Sites
+
+Automação Web
+- Paga: Mercury QTP --> HP --> Borland (Microfocus)
+- Open Source: Selenium (www.selenium.dev)
+
+Permite que repita os testes web quantas vezes for necessário
+- Teste de Regressão
+
+- Multiplos Browsers: Chrome, Opera, Firefox, Edge, Safari, etc
+- Multiplos Sistemas Operacionais (O.S.): Windows, Linux e OSX (Mac)
+- Multiplas versões de Browser: Chrome (111), beta (112), alfa/canary (possível 113)
+- Resolução: muitas...
+
+Google Analytics: mostrar quais são as combinações mais usadas
+
+Selenium WebDriver - começou em 2004 - versão 4.n
+Selenium IDE - gravador - surgiu em 2007 / ficou estável em 2010
+
+Existem várias formas de organizar um projeto de testes Web:
+- Simples (Se IDE / manualmente)
+- Selenium + Cucumber (BDD)
+- Page Objects
+
+O Selenium usa um Driver para se comunicar com o browser
+
+Código (Selenium) ---> Driver ---> Browser
+
+Existe um driver para cada versão ou conjunto de versões de um navegador
+No caso Chrome/Edge: 1 para cada versão
+Nos demais, normalmente, 1 versão de driver funciona para várias do navegador
+
+Há 3 formas de configurar/utilizar um driver:
+- Download manual e instala dentro do projeto - Bom: Portátil - Ruim: Manutenção
+- Download manual e instala em uma pasta compartilhada - Bom: Manutenção - Ruim: Portátil
+- Gerenciador de download automático - Bom: Manutenção + Portátil - Ruim: Usa recursos
+
+
+
+
