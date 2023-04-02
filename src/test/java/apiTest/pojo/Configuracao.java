@@ -1,6 +1,7 @@
 package apiTest.pojo;
 
-public class Configuracao {
+//Classe de configuração dos testes
+public class Configuracao { //
     private String baseUrl;
     private Endpoints endpoints;
 
