@@ -15,7 +15,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 class TesteAccountJohnny {
@@ -27,14 +26,15 @@ class TesteAccountJohnny {
         return new String(Files.readAllBytes(Paths.get(caminhoJson)));
     }
 
-    //Le arquivo de configuração
+    //Instancia o objeto Gson
     Gson gson = new Gson();
+    //Lê o arquivo json e instancia o objeto Configuracao
     String configuracaoJson = leArquivoJson("src/test/resources/json/configuracao.json");
     Configuracao configuracao = gson.fromJson(configuracaoJson, Configuracao.class);
 
     @Test
     @DisplayName("Teste de criação de uma conta")
-    @Order(1)
+    @Order(1) //Executa em primeiro
     void testeCriarUmaConta() throws IOException {
         //Le arquivo com informação de um usuário
         String jsonBody = leArquivoJson("src/test/resources/json/usuarioBookStore.json");
@@ -54,16 +54,19 @@ class TesteAccountJohnny {
                 .body("message", is("User exists!"));
     };
 
-    @ParameterizedTest @Order(2)
+    @ParameterizedTest
+    @Order(2) //Executa em segundo
     @CsvSource(value = {
             "Frieda,11peaN*ts",
             "Shermy,11peaN*ts",
             "PigPen,11peaN*ts"
-            }, delimiter = ',')
+            }, delimiter = ',') //Separa os valores por virgula
     @DisplayName("Teste de criação Parametrizada de contas")
     void TesteDeCriacaoParametrizadaDeContas(String username, String password) throws IOException {
         // Cria um usuário
         Usuario usuario = new Usuario();
+
+        //Seta os valores do usuário
         usuario.setUserName(username);
         usuario.setPassword(password);
 
@@ -84,12 +87,14 @@ class TesteAccountJohnny {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/src/test/resources/csv/massaBookstoreUsers.csv", delimiter = ',', numLinesToSkip = 1)
-    @Order(3)
+    @CsvFileSource(resources = "/src/test/resources/csv/massaBookstoreUsers.csv", delimiter = ',', numLinesToSkip = 1) //Lê o arquivo csv
+    @Order(3) //Executa em terceiro
     @DisplayName("Teste de criação Parametrizada de contas usando CSV")
     void TesteDeCriacaoParametrizadaDeContasCSV(String username, String password) throws IOException {
         // Cria um usuário
         Usuario usuario = new Usuario();
+
+        //Seta os valores do usuário
         usuario.setUserName(username);
         usuario.setPassword(password);
 
