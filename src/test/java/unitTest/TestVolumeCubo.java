@@ -63,7 +63,6 @@ public class TestVolumeCubo {
         double esperado = Double.parseDouble(resultadoesperado.substring(resultadoesperado.indexOf(":") + 1));
 
         double result = Math.pow(aresta, expoente);
-
         assertEquals(esperado, result, 0.0001);
 
 
