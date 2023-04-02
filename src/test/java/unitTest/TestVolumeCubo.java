@@ -1,12 +1,19 @@
 package unitTest;
 // bibliotecas necessarias para usar nos testes
 import org.junit.Test;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.CsvSource;
+
+
 import static org.junit.Assert.assertEquals;
 
 
 public class TestVolumeCubo {
 
     @Test
+    @Order(1)
     public void testCalcularVolumeCubo() {
         // Define a aresta do cubo
         // Configura
@@ -29,7 +36,39 @@ public class TestVolumeCubo {
         assertEquals(resultadoEsperado, volumeCalculado, 0.0001);
 
     }
+    @ParameterizedTest
+    @CsvSource(value = {
+            "5.0,3,125",
+            "6.0,3,216",
+            "7.0,3,343"
+    }, delimiter = ',')
+    @Order(2)
+    void testCalculoVolumeCuboLista(double aresta, int expoente, double esperado) {
 
+        double result = Math.pow(aresta, expoente);
+
+        // aceita uma diferença de 0.0001 entre o valor esperado e o valor real
+        assertEquals(esperado, result, 0.0001);
+    }
+
+    @ParameterizedTest
+    //indica o caminho do arquivo queserá lido e seus delimitadores
+    @CsvFileSource(resources = "/csv/massaVolumeCubo.csv", numLinesToSkip = 1, delimiter = ',')
+    @Order(3)
+
+    void testCalculoVolumeCuboCsv(String csvaresta, String csvexpoente, String resultadoesperado){
+
+        double aresta = Double.parseDouble(csvaresta.substring(csvaresta.indexOf(":") + 1).trim());
+        double expoente = Double.parseDouble(csvexpoente.substring(csvexpoente.indexOf(":") + 1).trim());
+        double esperado = Double.parseDouble(resultadoesperado.substring(resultadoesperado.indexOf(":") + 1));
+
+        double result = Math.pow(aresta, expoente);
+
+
+        assertEquals(esperado, result, 0.0001);
+
+
+    }
 }
 
 
