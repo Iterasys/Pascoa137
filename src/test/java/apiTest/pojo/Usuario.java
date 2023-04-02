@@ -1,8 +1,20 @@
 package apiTest.pojo;
 
-public class Usuario {
-    private String userName;
+import java.util.List;
+
+public class Usuario { //POJO - Plain Old Java Object
+    private String userId;
     private String password;
+    private String userName;
+    private List<Isbn> collectionOfIsbns;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public List<Isbn> getCollectionOfIsbns() {
+        return collectionOfIsbns;
+    }
 
     public String getUserName() {
         return userName;
