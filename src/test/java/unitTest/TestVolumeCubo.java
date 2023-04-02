@@ -64,8 +64,8 @@ public class TestVolumeCubo {
 
         double result = Math.pow(aresta, expoente);
 
-
         assertEquals(esperado, result, 0.0001);
+
 
 
     }
