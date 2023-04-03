@@ -12,6 +12,17 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.report>${project.basedir}/target/reports/jacoco.exec</sonar.report>
+        <sonar.organization>mfaisalkhatri</sonar.organization>
+        <sonar.report>${project.basedir}/reports/jacoco.exec</sonar.report>
+        <sonar.java.libraries>target/classes/**</sonar.java.libraries>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.java.source>15</sonar.java.source>
+        <jacoco.version>0.8.7</jacoco.version>
+        <sonarjacocolistener.version>5.14.0.18788</sonarjacocolistener.version>
+        <sonarmavenplugin.version>3.9.1.2184</sonarmavenplugin.version>
     </properties>
 
     <dependencies>
@@ -73,5 +84,41 @@
 
 
     </dependencies>
-
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>${sonarmavenplugin.version}</version>
+        </plugin>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.version}</version>
+            <executions>
+                <execution>
+                    <id>prepare-agent</id>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                    <configuration>
+                        <destFile>${sonar.report}</destFile>
+                        <propertyName>surefireArgLine</propertyName>
+                    </configuration>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                    <configuration>
+                        <dataFile>${sonar.report}</dataFile>
+                        <outputDirectory>${project.reporting.outputDirectory}/jacoco</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 </project>
