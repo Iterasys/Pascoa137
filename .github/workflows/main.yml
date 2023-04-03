@@ -15,19 +15,11 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
-      - name: Sonar Code Analysis
-        env:
-         GITHUB_TOKEN: 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
-         SONAR_TOKEN: 2f76c0dcc5ea23690acec4f878af6ac8b872fd03
-         SONAR_KEY: JohnnyKamigashima_Pascoa137
-        run: |
-                 mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                   -Dsonar.projectKey=JohnnyKamigashima_Pascoa137
-      - name: Test Report
-        uses: dorny/test-reporter@v1
+      - name: Publish Test Report
         if: success() || failure()
+        uses: scacap/action-surefire-report@v1
+      - name: JUnit Report Action
+        uses: mikepenz/action-junit-report@v3.7.6
+        if: success() || failure() # always run even if the previous step fails
         with:
-          name: Test Results
-          path: ${{ github.workspace }}/target/surefire-reports/TEST-TestSuite.xml
-          reporter: java-junit
-          java-version: 11
+          report_paths: '**/build/test-results/test/TEST-*.xml'
