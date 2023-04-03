@@ -17,3 +17,5 @@ jobs:
         run: mvn --batch-mode --update-snapshots package
       - name: JUnit Report Action
         uses: mikepenz/action-junit-report@v3.7.6
+      - name: Junit Test Dashboard
+        uses: janisz/action@v2
