@@ -10,7 +10,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TesteVolumePiramideTriangular { //Teste de unidade
+class TesteVolumePiramideTriangular {
+    //Teste de unidade
     //Johnny Kamigashima
 
     @Test
