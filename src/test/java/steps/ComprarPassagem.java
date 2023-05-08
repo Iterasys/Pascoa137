@@ -1,40 +1,21 @@
 package steps;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import pageObject.Base;
 
 import java.text.MessageFormat;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ComprarPassagem {
+    final WebDriver driver;
 
-    private WebDriver driver;
-
-    @Before
-    public void setup() {
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
+    public ComprarPassagem(Base base) {
+        this.driver = base.driver;
     }
 
     @Given("que acesso a pagina inicial")
@@ -52,13 +33,13 @@ public class ComprarPassagem {
         driver.findElement(By.cssSelector(byOrigem)).click();
         driver.findElement(By.cssSelector(byDestino)).click();
 
-        /*synchronized (driver) {
+        synchronized (driver) {
             try {
                 driver.wait(5000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 
     @When("clico no botao Find Flights")
@@ -71,12 +52,12 @@ public class ComprarPassagem {
         assertEquals("BlazeDemo - reserve", driver.getTitle());
         assertEquals(MessageFormat.format("Flights from {0} to {1}:", origem, destino), driver.findElement(By.cssSelector("div.container h3")).getText());
 
-        /*synchronized (driver) {
+        synchronized (driver) {
             try {
                 driver.wait(5000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 }

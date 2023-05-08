@@ -1,58 +1,38 @@
 package stepsPO;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import pageObject.Base;
 import pageObject.FlightsPage;
 import pageObject.HomePage;
 
 import java.text.MessageFormat;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ComprarPassagemPO {
+public class ComprarPassagemPO{
 
-    private WebDriver driver;
+    final WebDriver driver;
+    private FlightsPage flightsPage;
     private HomePage homePage;
 
-    private FlightsPage flightsPage;
+    public ComprarPassagemPO(Base base) {
+        this.driver = base.driver;
+    }
 
-    @Before
-    public void setup() {
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(60000, TimeUnit.MILLISECONDS);
+    @Given("que acesso a pagina inicial PO")
+    public void que_acesso_a_pagina_inicial() {
 
         homePage = new HomePage(driver);
 
-    }
-
-    @After
-    public void teardown() {
-        driver.quit();
-    }
-
-    @Given("que acesso a pagina inicial")
-    public void que_acesso_a_pagina_inicial() {
-        driver.get("https://blazedemo.com/");
-        String tituloPagina = driver.getTitle();
+        homePage.acessarHomePage();
+        String tituloPagina = homePage.getTitle();
         assertEquals("BlazeDemo", tituloPagina);
     }
 
-    @When("seleciono origem {string} e destino {string}")
+    @When("seleciono origem {string} e destino {string} PO")
     public void seleciono_origem_e_destino(String origem, String destino) {
 
         homePage.selecionarOrigemDestino(origem, destino);
@@ -66,17 +46,17 @@ public class ComprarPassagemPO {
         }
     }
 
-    @When("clico no botao Find Flights")
+    @When("clico no botao Find Flights PO")
     public void clico_no_botao_find_flights() {
         homePage.clicarBtnFindFlights();
         flightsPage = new FlightsPage(driver);
 
     }
 
-    @Then("exibe pagina de voos entre {string} e {string} disponiveis")
+    @Then("exibe pagina de voos entre {string} e {string} disponiveis PO")
     public void exibe_pagina_de_voos_entre_e_disponiveis(String origem, String destino) {
-        assertEquals("BlazeDemo - reserve", flightsPage.driver.getTitle());
-        assertEquals(MessageFormat.format("Flights from {0} to {1}:", origem, destino), driver.findElement(flightsPage.byFlightsHeader).getText());
+        assertEquals("BlazeDemo - reserve", flightsPage.getTitle());
+        assertEquals(MessageFormat.format("Flights from {0} to {1}:", origem, destino), flightsPage.getFlightsHeader());
 
         synchronized (driver) {
             try {
